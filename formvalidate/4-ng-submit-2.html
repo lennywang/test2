@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4-ng-submit-2</title>
+	<link rel="stylesheet" type="text/css" href="D:/ProgramData/angular//Lib/bootstrap.css">
+	<style type="text/css">
+	.error{
+		border:1px solid red;
+	}
+	</style>
+	<script src="D:/ProgramData/angular/Lib/angular.js"></script>		
+	<script src="js/app.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="mainController">
+	<form name="signupForm" ng-submit="sibmitForm()">
+		<div class="form-group">
+			<label>用户名</label>
+			<input name="username"
+					ng-model="username"
+					ng-class="{'error': signupForm.username.$invalid}"
+					ng-minlength="4"
+					required
+					class="form-control"
+				 type="text">
+		</div>	
+
+		  <div class="col-md-12">
+        1.必填项:{{username}}<br/>
+        $pristine 【没修改】：{{signupForm.username.$pristine }}<br/>
+        $dirty【修改过】：{{signupForm.username.$dirty}}<br/>
+        $invalid【验证失败】：{{signupForm.username.$invalid}}<br/>
+        $valid【验证成功】：{{signupForm.username.$valid}}<br/>
+        $touched【点击】：{{signupForm.username.$touched}}<br/>
+        【综合】：{{signupForm.username.$invalid && signupForm.username.$touched}}
+        <br>
+
+    </div>	
+	
+	用户名输入结果：
+	<div ng-if="signupForm.username.$invalid">用户名输入有误</div>
+	<div ng-if="signupForm.username.$valid">用户名输入正确</div>
+
+
+	</form>
+					<!--signupForm.username.$invalid && ng-class="{'error':signupForm.username.$invalid && 
+									   signupForm.username.$touched}" -->
+
+
+	
+</body>
+</html>

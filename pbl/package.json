@@ -1,0 +1,11 @@
+{
+  "name": "pbl",
+  "version": "1.0.0",
+  "description": "pbl",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "wll",
+  "license": "ISC"
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE>
+<!-- use module -->
+<html ng-app="exampleApp">
+
+<head>
+    <title>Angluar test</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+</head>
+
+<body>
+    <div class="panel panel-default" ng-controller="defaultCtrl">
+        <div class="panel-heading">
+            <h3>Products</h3>
+        </div>
+        <div class="panel-body">
+            <!-- 点击加价，价格递增 -->
+            <button type="button" class="btn btn-primary" ng-click="incrementPrices()">加价</button>
+        </div>
+        <div class="panel-body">
+            <!-- 将products数据以一种无序列表的形式展示 -->
+            <!-- list-property="price | currency" 列表项单位本地化 -->
+            <div unorderlist="products" list-property="price | currency"></div>
+        </div>
+    </div>
+    <script src="js/angular.js"></script>
+    <script type="text/javascript">
+    angular.module("exampleApp", [])
+        .directive("unorderlist", function() {
+            // scope 作用域
+            // element 应用该指令的元素
+            // attrs 使用该指令的元素的属性
+            return function(scope, element, attrs) {
+                // attrs['unorderlist'] 获取unorderlist属性值，这里为products
+                // 获取数据模型值，这里为scope.products
+                var data = scope[attrs['unorderlist']];
+                // 创建一个<ul>标签元素
+                var ul = angular.element("<ul>");
+                // 在应用该指令的元素中添加<ul>
+                element.append(ul);
+                // 获取listProperty属性值，这里为price | currency
+                var expression = attrs['listProperty'];
+                // 判断是否为数组
+                if (angular.isArray(data)) {
+                    // 遍历数据模型scope.products
+                    for (var i = 0; i < data.length; i++) {
+                        // 添加闭包,将i传递进去
+                        (function(index) {
+                            // 创建一个<li>标签元素
+                            var li = angular.element("<li>");
+                            // 将<li>标签添加到<ul>中
+                            ul.append(li);
+                            // 监听器函数，用$eval计算表达式和data[index]的值
+                            var watcherFn = function(watchScope) {
+                                    return watchScope.$eval(expression, data[index]);
+                                }
+                                // 添加$watch监听器监听作用域的变化
+                            scope.$watch(watcherFn, function(newValue, oldValue) {
+                                // 更新li的值
+                                li.text(newValue);
+                            })
+                        })(i);
+                    }
+                }
+            }
+        })
+        .controller("defaultCtrl", function($scope) {
+            // 数据模型
+            $scope.products = [{
+                name: "Apples",
+                category: "Fruit",
+                price: 1.20,
+                expiry: 10
+            }, {
+                name: "Bananas",
+                category: "Fruit",
+                price: 2.42,
+                expiry: 7
+            }, {
+                name: "Pears",
+                category: "Fruit",
+                price: 2.02,
+                expiry: 6
+            }];
+            // 递增价格
+            $scope.incrementPrices = function() {
+                for (var i = 0; i < $scope.products.length; i++) {
+                    $scope.products[i].price++;
+                }
+            }
+        })
+
+        // AngularJS 优雅的自定义指令 // http://blog.csdn.net/super_yang_android/article/details/51628446
+
+    </script>
+</body>
+
+</html>

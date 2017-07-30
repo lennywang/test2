@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>router</title>
+</head>
+
+<body ng-app="app">
+    <ul>
+        <li><a href="#/a">a</a></li>
+        <li><a href="#/b">b</a></li>
+        <li><a href="#/c">c</a></li>
+    </ul>
+    <div ng-view>
+    </div>
+    <!-- <script src="D:/ProgramData/angular/Lib/angular-1.4.1.js"></script> -->
+    <!--<script src="node_modules/angular/angular.js"></script>-->
+    <!-- <script src="node_modules/angular-route/angular-route.js"></script> -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script id="a_tmpl" type="text/ng-template">
+        <h1>{{title}}</h1>
+    </script>
+    <script>
+    //ng-Router 依赖模块名必须正确
+    //$routeProder 注入时候参数名必须正确
+
+    //templateUrl 模板的写法 : 以http的方式访问
+    //默认值设定 
+    var app = angular.module('app', ['ngRoute']);
+
+    app.config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/a', {
+                controller: 'AController',
+                templateUrl: 'a_tmpl'
+                    //templateUrl: 'tmpls/a.html'
+            })
+            .when('/b', {
+                controller: 'BController',
+                templateUrl: 'a_tmpl'
+                    //templateUrl: 'tmpls/b.html'
+            })
+            .when('/c', {
+                controller: 'CController',
+                templateUrl: 'a_tmpl'
+                    //templateUrl: 'tmpls/c.html'
+            })
+            .otherwise({
+                redirectTo: '/a'
+            })
+    }])
+
+    // app.config(['$routeProvider',function  ($routeProvider) {
+    //  $routeProvider.when('/a',{ controller:'AController',templateUrl:'tmpls/a.html'})
+    //              .when('/b',{ controller:'BController',templateUrl:'tmpls/b.html'})
+    //              .when('/c',{ controller:'CController',templateUrl:'tmpls/c.html'})
+    //              .otherwise(redirectTo:'/a')
+    // }])
+
+    app.controller('AController', ['$scope', function($scope) {
+        $scope.title = '这是A控制器'
+            // ,
+            // templateUrl:'a_tmpl'
+            // ,templateUrl:'tmpls/a.html'
+    }]);
+    app.controller('BController', ['$scope', function($scope) {
+        $scope.title = '这是B控制器'
+            // ,
+            // templateUrl:'a_tmpl'
+            // ,
+            // templateUrl:'tmpls/b.html'
+    }]);
+    app.controller('CController', ['$scope', function($scope) {
+        $scope.title = '这是C控制器'
+            // ,
+            // templateUrl:'a_tmpl'
+            // ,templateUrl:'tmpls/c.html'
+    }]);
+    </script>
+</body>
+
+</html>

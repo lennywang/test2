@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>3-自定义指令-模板使用</title>
+	<link rel="stylesheet" type="text/css" href="D:/ProgramData/angular/Lib/bootstrap.css">
+	<script src="D:/ProgramData/angular/Lib/angular-1.4.1.js"></script>
+	<script type="text/javascript">
+		
+		var myApp= angular.module('myApp',[]);
+		myApp.directive('breadcrumb', [function() {
+		    return {
+		      // 声明指令类型为元素E
+		      restrict: 'A',
+		      templateUrl:'templetes/breadcrumb.html',
+			  // replace: true,
+     		  //transclude: true		      
+		    };    
+	    }]);
+	    
+	</script>	
+</head>
+<body ng-app="myApp">
+	<div breadcrumb></div>
+	<breadcurmb></breadcurmb>
+</body>
+</html>

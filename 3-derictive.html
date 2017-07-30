@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>指令</title>
+	<link rel="stylesheet" type="text/css" href="Lib/bootstrap.css">
+</head>
+<body ng-app="myApp">
+	<wll-div></wll-div>
+	<ice-element></ice-element> 
+
+</body>
+</html>	
+<script src="Lib/angular-1.4.1.js"></script>
+	<script type="text/javascript">
+		// angular.module('myApp',[]).directive('wllDiv',[function  () {
+			
+		// 	return{
+		// 		restrict: 'E',
+		// 		template:'<div>测试</div>'
+		// 	}			
+
+		// }]);
+		var myApp= angular.module('myApp',[]);
+		myApp.directive('iceElement', [function() {
+        return {
+          // 声明指令类型为元素
+          restrict: 'E',
+          // 指定指令的渲染模板
+          template: '<button class="btn btn-primary btn-lg">元素指令</button>',
+        };
+       
+       }]);
+
+		myApp.directive('wllDiv',[function  () {
+			
+			return{
+				restrict: 'E',
+				template:'<div>测试</div>'
+			}			
+
+		}]);
+
+		myApp.directive('btn',[function  () {
+			return{
+				scope:{
+					primary:'@',
+					lg:'@',
+					block:'@'
+				},
+				template:'<button class="btn {{primary=='true'?\'btn-primary\':\'\'}}">button</button>'
+			}
+		}])
+
+</script>

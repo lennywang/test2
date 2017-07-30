@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NG-Mouseover</title>
+    <style type="text/css">
+    #dv1 {
+        width: 80px;
+        height: 80px;
+        border: 1px solid red;
+    }
+    
+    #dv2 {
+        width: 80px;
+        height: 80px;
+        border: 1px solid green;
+    }
+    </style>
+    <script src="js/angular.js"></script>
+    <script type="text/javascript">
+    (function() {
+
+        var app = angular.module('app', []);
+        app.controller('mainController', [function() {
+
+            function over() {
+                angular.element('#dv1').show();
+                angular.element('#dv2').hide();
+            }
+
+
+        }]);
+
+    }());
+    </script>
+</head>
+
+<body ng-app="app" ng-controller="mainController">
+    <div id="dv1" ng-mouseover="over"></div>
+    <div id="dv2" ng-mouseout="out"></div>
+</body>
+
+</html>

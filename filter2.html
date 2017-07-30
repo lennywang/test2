@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过滤器2</title>
+	<script src="Lib/angular.js"></script>
+	<script src="formvalidate/js/app.js"></script>
+	<script type="text/javascript">
+		angular.module('app',[]).filter('capitalize_as_you_want',function  () {
+			return function function_name (input, capitalize_index, specified_char) {
+					input = input || '';
+					var output = '';					
+					var customCapIndex = capitalize_index || -1;					
+					var specifiedChar = specified_char || '';
+
+					for (var i = 0; i < input.length; i++) {
+						 if (i === 0 || i === customCapIndex) {
+						     output += input[i].toUpperCase();
+						 }
+						 else {
+						     // 指定的字母也大写
+						     if (specified_char != '' && input[i] === specified_char) {
+						         output += input[i].toUpperCase();
+						     }
+						     else {
+						         output += input[i];
+						     }
+						 }
+					};
+					return output;
+			}
+		});
+
+		
+
+
+	</script>
+</head>
+<body ng-app='app'>
+	 <input ng-model="yourinput" type="text">
+    <br />
+    Result: {{ yourinput | capitalize_as_you_want:3:'b' }}
+</body>
+</html>

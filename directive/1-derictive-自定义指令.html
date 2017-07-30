@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>1-自定义指令</title>
+	<!-- <link rel="stylesheet" type="text/css" href="Lib/bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="D:/ProgramData/angular/Lib/bootstrap.css">
+	<script src="D:/ProgramData/angular/Lib/angular-1.4.1.js"></script>
+</head>
+<body ng-app="myApp">
+	<h3>自定义指令</h3>
+	<!-- <wll-div></wll-div> -->
+	<h4>元素指令</h4>
+	<ice-element></ice-element> 
+	<hr/>
+	<h4>属性指令</h4>
+	<div ice-attr></div>
+	<hr/>
+	<h4>类名指令</h4>
+	<div class="ice-class"></div>
+	<hr/>
+	<h4>注释指令</h4>
+	<!-- directive:ice-comment -->
+</body>
+</html>		
+	<script type="text/javascript">
+	    /**
+	     * 指令系统一共可以定义4种类型的指令
+	     * 分别为：
+	     *   1. restrict: 'E' // 元素（element）
+	     *   2. restrict: 'A' // 属性（attribute）
+	     *   3. restrict: 'C' // 类名（class）
+	     *   4. restrict: 'M' // 注释（comment）
+	     */
+
+		var myApp= angular.module('myApp',[]);
+		myApp.directive('iceElement', [function() {
+        return {
+          // 声明指令类型为元素
+          restrict: 'E',
+          // 指定指令的渲染模板
+          template: '<button class="btn btn-primary btn-lg">元素指令</button>',
+        };
+       
+       }]);
+
+		myApp.directive('iceAttr', [function() {
+        return {
+          // 声明指令类型为元素
+          restrict: 'A',
+          // 指定指令的渲染模板
+          template: '<button class="btn btn-primary btn-lg">属性指令</button>',
+        };
+       
+       }]);
+
+		myApp.directive('iceClass', [function() {
+        return {
+          // 声明指令类型为元素
+          restrict: 'C',
+          // 指定指令的渲染模板
+          template: '<button class="btn btn-primary btn-lg">类名指令</button>',
+        };
+       
+       }]);
+
+		myApp.directive('iceComment', [function() {
+        return {
+          // 声明指令类型为元素
+          restrict: 'M',
+          replace: true,
+          // 指定指令的渲染模板
+          template: '<button class="btn btn-primary btn-lg">注释指令</button>',
+        };
+       
+       }]);
+
+		// myApp.directive('wllDiv',[function  () {
+			
+		// 	return{
+		// 		restrict: 'E',
+		// 		template:'<div>测试</div>'
+		// 	}	
+
+		// }]);
+
+</script>

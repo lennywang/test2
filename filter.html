@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过滤器</title>
+	<script src="Lib/angular.js"></script>
+	<script src="formvalidate/js/app.js"></script>
+	<script type="text/javascript">
+		angular.module('app',[]).controller('myController',['$scope',function  ($scope) {
+			$scope.myFilter=function (item) {
+			return item.age===21;
+
+			$scope.myComparter=function  (expected,actual) {
+				return angular.equals(expected,actual);//.toLowerCase().toLowerCase()
+			}
+		}
+
+		$scope.json={
+
+			name:'xiaoxiao',
+			age:28,
+			firend:{
+				name:'tiantian',
+				age:28
+			},
+			classes:[{
+				name:'tiantian',
+				age:28
+			},{
+				name:'tiantian',
+				age:28
+			}]
+		}
+		}]);
+
+		
+
+
+	</script>
+</head>
+<body ng-app='app' ng-controller="myController">
+	<h1>{{100.55333366|currency:'￥':0}}</h1>
+
+	<h1>{{ '2015-05-20T03:56:16.887Z' | date:"yyyy-MM-dd @ h:mma"}}</h1>
+	Name:<input ng-model="yourName" />
+
+	<div ng-init="myArr=[{name:'Tom',age:20},{name:'Tom Senior',age:50}, {name:'May', age:21}, {name:'Jack', age:20}, {name:'Alice', age:22}]">
+		<!-- <div ng-repeat="u in myArr| limitTo:2">filter: {name:yourName}:myFilter myComparter
+			<p>Name:{{u.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Age:{{u.age}} </p>
+		</div> -->
+
+		<div ng-repeat="u in myArr| orderBy:['age','-name']:false"><!--filter: {name:yourName}:myFilter myComparter-->
+			<p>Name:{{u.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Age:{{u.age}} </p>
+		</div>
+	</div>
+
+	<!-- <p>{{json}}</p>
+	<br/>
+	<p>
+		{{json|json}}
+	</p>
+	<br/>
+	pre 元素可定义预格式化的文本。
+	<pre>
+		{{json|json}}
+	</pre> --> 
+
+	China has joined the {{ "wto" | uppercase }}.
+	We all need {{ "MONEY" | lowercase }}.
+	<br/>
+	{{ "3456789" | number}}&nbsp;&nbsp;&nbsp;&nbsp;{{ false | number}}&nbsp;&nbsp;&nbsp;&nbsp;{{ 12345678.333 | number:1}}
+</body>
+</html>

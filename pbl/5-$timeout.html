@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.js"></script>
+    <script>
+    (function(angular) {
+        angular.module("Demo", [])
+            .controller("testCtrl", ["$scope", "$timeout", testCtrl]);
+
+        function testCtrl($scope, $timeout) {
+            var toDo = function() {
+                $scope.val = "Hello World!"
+            };
+            $timeout(toDo, 5000)
+        };
+    }(angular));
+    </script>
+</head>
+
+<body>
+
+    <body ng-app="Demo">
+        <span ng-controller="testCtrl">{{val}}</span>
+    </body>
+</body>
+
+</html>

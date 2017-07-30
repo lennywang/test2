@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试</title>
+	<link rel="stylesheet" type="text/css" href="D:/ProgramData/angular//Lib/bootstrap.css">
+	<style type="text/css">
+		.red{
+			background: #a30;
+		}
+		.error{
+			border: 1px solid #a30;
+		}
+	</style>
+	<script src="D:/ProgramData/angular/Lib/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script type="text/javascript">
+
+	</script>
+</head>
+<body ng-app='myApp'>
+
+	<h2>注册</h2>
+	<form name='signUpForm' ng-submit='sibmitForm()' ng-controller='mainController'>
+		<div class="form-group">
+			<label>用户名：</label>
+			<pre>合法：{{signUpForm.username.$valid}}</pre>
+			<pre>{{userdata.username}}</pre>
+			<input type="text" name="username" class="form-control" ng-model="userdata.username" ng-minlength="4" ng-maxlength="32" required>
+			<p class="error" ng-if="signUpForm.username.$error.required && signUpForm.username.$touched">用户名不可为空</p>
+		</div>
+		<p>{{ 12 | currency}}</p>
+	</form>
+	<!-- <input type="text" ng-model='name' class="form a">
+	<div>{{name}}</div>
+	<div>{{name}}</div>
+	<div>{{name}}</div>
+	<div>{{name}}</div>
+	<div>{{name}}</div>
+	<div>{{name}}</div> -->
+	<p>{{ 12 | currency}}</p>
+	{{ 12.45 | currency:'￥'}} }
+</body>
+</html>
